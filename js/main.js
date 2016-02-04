@@ -16,10 +16,7 @@ window.onload = function(){
     };
 
     window.onkeydown =function(event){
-        var e = window.event||event;
-        if(e.keyCode == 37 || e.keyCode == 38 || e.keyCode == 39 || e.keyCode == 40){
-            keyDown(event)
-        }
+        keydownFunc(event);
     };
 
     function keyDown(event){
@@ -51,10 +48,7 @@ window.onload = function(){
 
     function setKey(){
         window.onkeydown =function(event){
-            var e = window.event||event;
-            if(e.keyCode == 37 || e.keyCode == 38 || e.keyCode == 39 || e.keyCode == 40){
-                keyDown(event)
-            }
+            keydownFunc(event);
         };
     }
 
@@ -63,6 +57,12 @@ window.onload = function(){
         cubes.setRandomCube(2);
         cubes.draw(ctx);
         scoreDiv.innerHTML = '得分：' + cubes.score;
+    }
+    function keydownFunc(event){
+        var e = window.event||event;
+            if(e.keyCode == 37 || e.keyCode == 38 || e.keyCode == 39 || e.keyCode == 40){
+                keyDown(event)
+            }
     }
 };
 

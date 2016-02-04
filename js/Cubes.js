@@ -256,21 +256,37 @@ Cubes.prototype.move = function(dir,ctx,func){
             func();
 
             //判断每个方格四周是否有与其value相同的方格
-            gameOver:for(var i = 0;i < 4; i++){
-                for(var j = 0;j < 4; j++){
+            // gameOver:for(var i = 0;i < 4; i++){
+            //     for(var j = 0;j < 4; j++){
 
-                    var bi = i == 3 ? 2 : i + 1;//处于最下方位置的方格，不能与i=4行比，所以将其+1行定为第三行，其他行的+1行不变，便可以直接用下面的方法比较
-                    var si = i == 0 ? 1 : i - 1;
-                    var bj = j == 3 ? 2 : j + 1;
-                    var sj = j == 0 ? 1 : j - 1;
-                    if(cubes[i][j].value == cubes[bi][j].value || cubes[i][j].value == cubes[si][j].value ||
-                        cubes[i][j].value == cubes[i][bj].value || cubes[i][j].value == cubes[i][sj].value){
+            //         var bi = i == 3 ? 2 : i + 1;//处于最下方位置的方格，不能与i=4行比，所以将其+1行定为第三行，其他行的+1行不变，便可以直接用下面的方法比较
+            //         var si = i == 0 ? 1 : i - 1;
+            //         var bj = j == 3 ? 2 : j + 1;
+            //         var sj = j == 0 ? 1 : j - 1;
+            //         if(cubes[i][j].value == cubes[bi][j].value || cubes[i][j].value == cubes[si][j].value ||
+            //             cubes[i][j].value == cubes[i][bj].value || cubes[i][j].value == cubes[i][sj].value){
 
-                        flag = false;
-                        break gameOver;
-                    }
-                }
+            //             flag = false;
+            //             break gameOver;
+            //         }
+            //     }
+            // }
+            gameOverX:for(var i = 0; i < 4; i ++){
+            	for(var j = 0; j < 3; j++){
+            		if(cubes[i][j].value === cubes[i][j+1].value){
+            			flag = false;
+            			break gameOverX;
+            		}
+            	}
             }
+            gameOverY:for (var i = 0; i < 3; i++) {
+            	for(var j = 0; j < 4; j++){
+            		if(cubes[i][j].value === cubes[i+1][j].value){
+            			flag = false;
+            			break gameOverY;
+            		}
+            	}	
+            };
 
             //在移动和产生新方块之后，如果空方格为0并且没法方格不与value相同的方格相邻，游戏结束；
             if(flag == true && cubes.emptyCube == 0){
