@@ -5,8 +5,8 @@
 //对象的克隆
 Object.prototype.deepClone=function(){
     function cloneObj(){}
-    cloneObj.prototype=this;
-    var obj=new cloneObj();
+    cloneObj.prototype = this;
+    var obj = new cloneObj();
     for(var o in obj){if(typeof(obj[o])=="object")obj[o]=obj[o].deepClone();}
     return obj;
 };
@@ -78,8 +78,7 @@ Cubes.prototype.move = function(dir,ctx,func){
             var pos = 3,//移动之后newCubes中每一行需要填充的位置，初始为3
                 combine = true;//方块是否可以合并，用来剔除三个或四个相同方块合并。合并后将其置于false；只有移动，没有合并，将其置于true；
             for(var j = 3; j >= 0; j--){
-                if(cubes[i][j].value == 0){
-                }else{
+                if(cubes[i][j].value !== 0){
                     if(pos == 3){
                         cubes[i][j].newX = 10 + pos*(cubes[i][j].sideLen + 10);
                         newCubes[i][pos] = cubes[i][j].deepClone();
@@ -113,9 +112,8 @@ Cubes.prototype.move = function(dir,ctx,func){
                 combine = true;
 
             for(var j = 0; j <4; j++){
-                if(cubes[i][j].value == 0){
-                }else{
-                    if(pos == 0){
+                if(cubes[i][j].value !== 0){
+                	if(pos == 0){
                         cubes[i][j].newX = 10 + pos*(cubes[i][j].sideLen + 10);
                         newCubes[i][pos] = cubes[i][j].deepClone();
                         newCubes[i][pos].x = newCubes[i][pos].newX;
@@ -146,9 +144,8 @@ Cubes.prototype.move = function(dir,ctx,func){
             var pos = 3,
                 combine = true;
             for(var i = 3; i >= 0; i--){
-                if(cubes[i][j].value == 0){
-                }else{
-                    if(pos == 3){
+                if(cubes[i][j].value !== 0){
+                	if(pos == 3){
                         cubes[i][j].newY = 10 + pos*(cubes[i][j].sideLen + 10);
                         newCubes[pos][j] = cubes[i][j].deepClone();
                         newCubes[pos][j].y = newCubes[pos][j].newY;
@@ -179,8 +176,7 @@ Cubes.prototype.move = function(dir,ctx,func){
             var pos = 0,
                 combine = true;
             for(var i = 0; i <4; i++){
-                if(cubes[i][j].value == 0){
-                }else{
+                if(cubes[i][j].value !== 0){
                     if(pos == 0){
                         cubes[i][j].newY = 10 + pos*(cubes[i][j].sideLen + 10);
                         newCubes[pos][j] = cubes[i][j].deepClone();
